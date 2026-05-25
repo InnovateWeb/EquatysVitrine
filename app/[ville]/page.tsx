@@ -109,14 +109,14 @@ export default async function VillePage(
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href={siteConfig.phone.href}
-                className="inline-flex items-center gap-2 rounded-[6px] bg-accent px-6 py-3.5 font-medium text-white transition-colors hover:bg-accent-hover"
+                className="inline-flex h-11 items-center gap-2 rounded-[6px] bg-accent px-5 font-medium text-white transition-colors hover:bg-accent-hover"
               >
                 <Phone className="size-4" aria-hidden />
                 {siteConfig.phone.display}
               </a>
               <a
                 href="/demarrer?situation=urgence"
-                className="border-line inline-flex items-center gap-2 rounded-[6px] border px-6 py-3.5 font-medium text-ink transition-colors hover:border-white/30"
+                className="border-line inline-flex h-11 items-center gap-2 rounded-[6px] border px-5 font-medium text-ink transition-colors hover:border-white/30"
               >
                 Formulaire urgence
                 <ArrowRight className="size-4" aria-hidden />
@@ -233,12 +233,12 @@ export default async function VillePage(
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href={siteConfig.phone.href}
-                className="inline-flex items-center gap-2 rounded-[6px] bg-accent px-6 py-3.5 font-medium text-white transition-colors hover:bg-accent-hover"
+                className="inline-flex h-11 items-center gap-2 rounded-[6px] bg-accent px-5 font-medium text-white transition-colors hover:bg-accent-hover"
               >
                 <Phone className="size-4" aria-hidden />
                 {siteConfig.phone.display}
               </a>
-              <Button variant="ghost" href="/demarrer?situation=urgence" className="h-auto py-3.5">
+              <Button variant="ghost" href="/demarrer?situation=urgence">
                 Formulaire urgence
                 <ArrowRight className="size-4" aria-hidden />
               </Button>
