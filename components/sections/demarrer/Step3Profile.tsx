@@ -27,6 +27,7 @@ interface Step3ProfileProps {
   department: string;
   values: Record<Step3Field, string>;
   onChange: (field: Step3Field, value: string) => void;
+  onFilesChange: (files: File[]) => void;
   canSubmit: boolean;
   submitting: boolean;
   onBack: () => void;
@@ -69,6 +70,7 @@ export function Step3Profile({
   department,
   values,
   onChange,
+  onFilesChange,
   canSubmit,
   submitting,
   onBack,
@@ -76,6 +78,14 @@ export function Step3Profile({
 }: Step3ProfileProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
+
+  function updateFiles(updater: (prev: File[]) => File[]) {
+    setFiles((prev) => {
+      const next = updater(prev);
+      onFilesChange(next);
+      return next;
+    });
+  }
 
   const showCompanyField =
     values.clientType === "entreprise" || values.clientType === "institution";
@@ -207,7 +217,7 @@ export function Step3Profile({
             accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.xls,.xlsx"
             onChange={(e) => {
               const newFiles = Array.from(e.target.files ?? []);
-              setFiles((prev) => {
+              updateFiles((prev) => {
                 const existing = new Set(prev.map((f) => f.name));
                 return [...prev, ...newFiles.filter((f) => !existing.has(f.name))];
               });
@@ -225,7 +235,7 @@ export function Step3Profile({
                 </span>
                 <button
                   type="button"
-                  onClick={() => setFiles((prev) => prev.filter((p) => p.name !== f.name))}
+                  onClick={() => updateFiles((prev) => prev.filter((p) => p.name !== f.name))}
                   className="text-muted hover:text-ink shrink-0 cursor-pointer text-[0.75rem] leading-none transition-colors"
                   aria-label={`Retirer ${f.name}`}
                 >

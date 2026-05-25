@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Phone, Send } from "lucide-react";
+import { Phone, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -30,18 +30,46 @@ const Divider = () => (
 /* -------------------------------------------------------------------------- */
 
 export function ContactSection() {
-  const [sent, setSent] = useState(false);
+  const [toast, setToast] = useState<"success" | "error" | null>(null);
   const [loading, setLoading] = useState(false);
+
+  function showToast(type: "success" | "error") {
+    setToast(type);
+    setTimeout(() => setToast(null), 5000);
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSent(true);
+
+    const form = e.currentTarget; // sauvegardé avant le premier await
+    const fd = new FormData(form);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          intent: "contact",
+          prenom: fd.get("prenom"),
+          nom: fd.get("nom"),
+          email: fd.get("email"),
+          tel: fd.get("tel") || undefined,
+          sujet: fd.get("sujet"),
+          message: fd.get("message"),
+        }),
+      });
+      if (!res.ok) throw new Error();
+      form.reset();
+      showToast("success");
+    } catch {
+      showToast("error");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
+    <>
     <div className="theme-dark bg-[#0a0a0a] text-white">
 
       {/* ================================================================== */}
@@ -111,22 +139,7 @@ export function ContactSection() {
             la journée ouvrée.
           </Text>
 
-          {sent ? (
-            <div className="mt-16 flex flex-col items-start gap-4">
-              <div className="grid size-14 place-items-center rounded-full bg-accent/[0.15]">
-                <CheckCircle2 className="size-7 text-accent" />
-              </div>
-              <Heading level={2} display="m" className="mt-2">Message envoyé !</Heading>
-              <Text size="l" className="max-w-[46ch] text-white/60">
-                Merci pour votre message. Nous vous répondrons dans les
-                meilleurs délais, généralement sous 24 h ouvrées.
-              </Text>
-              <Button variant="ghost" className="mt-2" onClick={() => setSent(false)}>
-                Envoyer un autre message
-              </Button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="mt-16 flex flex-col gap-8" noValidate>
+          <form onSubmit={handleSubmit} className="mt-16 flex flex-col gap-8" noValidate>
 
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
@@ -182,7 +195,6 @@ export function ContactSection() {
               </div>
 
             </form>
-          )}
         </Container>
       </section>
 
@@ -246,5 +258,28 @@ export function ContactSection() {
       </section>
 
     </div>
+
+      {/* Toast */}
+      <div
+        aria-live="polite"
+        className={cn(
+          "fixed bottom-6 left-1/2 z-[100] -translate-x-1/2 transition-all duration-300",
+          toast ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none",
+        )}
+      >
+        {toast === "success" && (
+          <div className="flex items-center gap-3 rounded-[10px] bg-[#16a34a] px-5 py-3.5 shadow-xl">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><polyline points="20 6 9 17 4 12"/></svg>
+            <p className="text-body-s font-medium text-white">Message envoyé avec succès !</p>
+          </div>
+        )}
+        {toast === "error" && (
+          <div className="flex items-center gap-3 rounded-[10px] bg-[#dc2626] px-5 py-3.5 shadow-xl">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <p className="text-body-s font-medium text-white">Erreur lors de l'envoi. Veuillez réessayer.</p>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

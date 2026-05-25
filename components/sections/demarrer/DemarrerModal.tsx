@@ -96,6 +96,7 @@ export function DemarrerModal() {
     buildInitialState(parseSituationParam(searchParams.get("situation"))),
   );
   const [submitting, setSubmitting] = useState(false);
+  const [attachments, setAttachments] = useState<File[]>([]);
 
   // Pas de situation → retour au bloc parcours de l'accueil
   useEffect(() => {
@@ -153,13 +154,31 @@ export function DemarrerModal() {
     state.formData.email.trim().length > 0 &&
     state.formData.siteStreet.trim().length > 0;
 
-  const submit = () => {
+  const submit = async () => {
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const isUrgent = state.situation === "urgence";
+      const payload = isUrgent
+        ? { intent: "urgent", ...state.formData }
+        : { intent: state.situation, department, choiceTitle, ...state.formData };
+
+      const fd = new FormData();
+      fd.append("data", JSON.stringify(payload));
+      attachments.forEach((f) => fd.append("files", f, f.name));
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: fd,
+      });
+      if (!res.ok) throw new Error();
       set({ step: "success" });
       scrollTop();
-    }, 800);
+    } catch {
+      // L'écran de succès ne s'affiche pas — l'utilisateur peut réessayer
+      alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous appeler directement.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const animKey = `${state.step}-${state.situation ?? ""}`;
@@ -198,6 +217,7 @@ export function DemarrerModal() {
                 description: state.formData.description,
               }}
               onChange={setField}
+              onFilesChange={setAttachments}
               canSubmit={canSubmitStep3}
               submitting={submitting}
               onBack={backToStep2}
@@ -228,6 +248,7 @@ export function DemarrerModal() {
                 billingCity: state.formData.billingCity,
               }}
               onChange={setField}
+              onFilesChange={setAttachments}
               canSubmit={canSubmitUrgence}
               submitting={submitting}
               onBack={backToParcours}
