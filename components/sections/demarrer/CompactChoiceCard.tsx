@@ -1,9 +1,11 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CompactChoiceCardProps {
+  /** Icône Lucide optionnelle affichée à gauche. */
+  icon?: LucideIcon;
   /** Eyebrow optionnel (ex : "01 · URGENT"). */
   eyebrow?: string;
   /** Accent rouge (carte urgence). */
@@ -14,6 +16,7 @@ interface CompactChoiceCardProps {
 }
 
 export function CompactChoiceCard({
+  icon: Icon,
   eyebrow,
   urgent,
   title,
@@ -26,6 +29,12 @@ export function CompactChoiceCard({
       onClick={onSelect}
       className="group border-line hover:border-ink/25 flex w-full cursor-pointer items-center gap-4 rounded-[8px] border bg-white/[0.03] px-5 py-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/[0.05] sm:gap-5"
     >
+      {Icon && (
+        <Icon
+          className={cn("size-5 shrink-0", urgent ? "text-[#E63946]" : "text-accent")}
+          aria-hidden
+        />
+      )}
       <span className="min-w-0 flex-1">
         {eyebrow && (
           <span

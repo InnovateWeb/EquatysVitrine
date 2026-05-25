@@ -35,7 +35,7 @@ interface TradeCardProps {
 }
 
 export function TradeCard({ metier, className }: TradeCardProps) {
-  const Icon = metierIcons[metier.slug] ?? Wrench;
+  const Icon = metierIcons[metier.slug] ?? Network;
   const badges = metierBadges[metier.slug];
 
   return (
