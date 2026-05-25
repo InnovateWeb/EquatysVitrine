@@ -189,6 +189,44 @@ export function ContactSection() {
       <Divider />
 
       {/* ================================================================== */}
+      {/* NOUS JOINDRE                                                         */}
+      {/* ================================================================== */}
+      <section data-section-theme="dark" className="py-[clamp(60px,8vw,100px)]">
+        <Container>
+          <Eyebrow>Nous joindre</Eyebrow>
+          <Heading level={2} display="m" className="mt-4">Aucun standard, aucun répondeur.</Heading>
+          <Text size="l" tone="muted" className="mt-4 max-w-[60ch]">
+            Un humain qualifié décroche, quelle que soit l'heure. Pour une
+            urgence, c'est même la voie la plus rapide.
+          </Text>
+
+          <div className="mt-16 grid gap-10 sm:grid-cols-3">
+            <div className="flex flex-col gap-3 border-l-[3px] border-l-accent pl-5">
+              <p className="font-mono text-mono-s tracking-mono uppercase text-white/50">Téléphone</p>
+              <a href={siteConfig.phone.href} className="text-h3 font-medium leading-tight text-white transition-colors hover:text-accent">
+                {siteConfig.phone.display}
+              </a>
+              <p className="font-mono text-mono-s text-white/50">24h/24, 7j/7</p>
+            </div>
+            <div className="flex flex-col gap-3 border-l-[3px] border-l-accent pl-5">
+              <p className="font-mono text-mono-s tracking-mono uppercase text-white/50">E-mail</p>
+              <a href={`mailto:${siteConfig.email}`} className="text-h3 font-medium leading-tight text-white transition-colors hover:text-accent">
+                {siteConfig.email}
+              </a>
+              <p className="font-mono text-mono-s text-white/50">Réponse sous 24h ouvrées</p>
+            </div>
+            <div className="flex flex-col gap-3 border-l-[3px] border-l-accent pl-5">
+              <p className="font-mono text-mono-s tracking-mono uppercase text-white/50">Adresse</p>
+              <p className="text-h3 font-medium leading-tight text-white">{siteConfig.address.street}</p>
+              <p className="font-mono text-mono-s text-white/50">{siteConfig.address.city}</p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <Divider />
+
+      {/* ================================================================== */}
       {/* CARTE                                                                */}
       {/* ================================================================== */}
       <section data-section-theme="dark" className="py-[clamp(80px,12vw,160px)]">

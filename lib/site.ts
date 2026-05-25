@@ -97,15 +97,6 @@ export const mainNav: NavItem[] = [
   { label: "Contact", href: "/contact" },
 ];
 
-export const footerServices = [
-  "Études",
-  "Réalisations",
-  "Rénovations",
-  "Maintenances",
-  "Urgences",
-  "Assainissements",
-];
-
 export const legalLinks = [
   { label: "Mentions légales", href: "/mentions-legales" },
   { label: "Protection des données", href: "/protection-donnees" },

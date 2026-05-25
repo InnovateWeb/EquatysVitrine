@@ -2,10 +2,29 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { DemarrerModal } from "@/components/sections/demarrer/DemarrerModal";
 
+const title = "Démarrer une demande";
+const description =
+  "Quelques questions pour orienter votre demande vers la bonne équipe Equatys — étude, réalisation, assainissement ou maintenance.";
+
 export const metadata: Metadata = {
-  title: "Démarrer une demande",
-  description:
-    "Quelques questions pour orienter votre demande vers la bonne équipe Equatys — étude, réalisation, assainissement ou maintenance.",
+  title,
+  description,
+  alternates: {
+    canonical: "https://www.equatys.ch/demarrer",
+  },
+  openGraph: {
+    title: `${title} — Equatys Energy`,
+    description,
+    url: "https://www.equatys.ch/demarrer",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${title} — Equatys Energy`,
+    description,
+    images: ["/og-image.png"],
+  },
 };
 
 export default function DemarrerPage() {

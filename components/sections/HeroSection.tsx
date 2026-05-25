@@ -56,7 +56,7 @@ export function HeroSection() {
     >
       <HeroVideo>
         <Container className="my-auto py-24">
-          <div className="max-w-[820px]">
+          <div className="max-w-[820px] text-center lg:text-left">
             <Eyebrow ref={eyebrowRef}>Technique du bâtiment</Eyebrow>
             <Heading ref={titleRef} level={1} display="xl" className="mt-5">
               Un seul partenaire

@@ -72,7 +72,7 @@ export function Footer() {
                 <LinkedInIcon />
               </a>
               <a
-                href="https://www.instagram.com/equatys_energy"
+                href="https://www.instagram.com/equatysenergy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-line text-muted hover:text-ink grid size-8 place-items-center rounded-[6px] border transition-colors"

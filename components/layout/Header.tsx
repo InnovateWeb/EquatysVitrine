@@ -153,7 +153,7 @@ export function Header() {
                 overDark ? "text-white" : "text-ink",
               )}
             >
-              <Menu className="size-5" aria-hidden />
+              <Menu className="size-7" aria-hidden />
             </button>
           </div>
         </Container>
@@ -165,12 +165,11 @@ export function Header() {
           "fixed inset-0 z-50 lg:hidden",
           mobileOpen ? "" : "pointer-events-none",
         )}
-        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
       >
         {/* Voile */}
         <button
           type="button"
-          tabIndex={mobileOpen ? 0 : -1}
           aria-label="Fermer le menu"
           onClick={() => setMobileOpen(false)}
           className={cn(
@@ -226,6 +225,20 @@ export function Header() {
               })}
             </ul>
           </nav>
+
+          {/* Urgence */}
+          <div className="border-line border-t px-6 py-6">
+            <p className="font-mono text-[10px] tracking-widest text-muted uppercase mb-3">
+              Urgence 24/7
+            </p>
+            <a
+              href={siteConfig.phone.href}
+              className="inline-flex items-center gap-2 rounded-[6px] bg-accent px-4 h-11 w-full justify-center text-body-s font-medium text-white transition-colors hover:bg-accent-hover"
+            >
+              <Phone className="size-4 shrink-0" aria-hidden />
+              {siteConfig.phone.display}
+            </a>
+          </div>
         </div>
       </div>
     </>
