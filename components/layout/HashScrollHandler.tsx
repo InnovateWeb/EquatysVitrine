@@ -29,9 +29,11 @@ export function HashScrollHandler() {
       }
     };
 
-    // Laisse le layout se stabiliser (sections + ScrollTrigger) avant de défiler.
-    const raf = requestAnimationFrame(() => requestAnimationFrame(scroll));
-    return () => cancelAnimationFrame(raf);
+    // Laisse Lenis + GSAP/ScrollTrigger s'initialiser avant de défiler.
+    // Un double-RAF suffit quand on est déjà sur la page ; quand on arrive
+    // depuis une autre route, il faut un délai plus long (~150 ms).
+    const timer = setTimeout(scroll, 150);
+    return () => clearTimeout(timer);
   }, []);
 
   return null;
