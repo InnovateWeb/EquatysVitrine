@@ -133,11 +133,11 @@ export function Footer() {
         </div>
 
         {/* Bas de page */}
-        <div className="border-line flex flex-col gap-4 border-t py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-body-s text-muted">
+        <div className="border-line flex flex-col items-center gap-4 border-t py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-body-s text-muted text-center sm:text-left">
             © {year} {siteConfig.legalName} — Tous droits réservés.
           </p>
-          <nav aria-label="Liens légaux" className="flex flex-wrap gap-x-5 gap-y-2">
+          <nav aria-label="Liens légaux" className="flex flex-wrap justify-center gap-x-5 gap-y-2 sm:justify-start">
             {legalLinks.map((l) => (
               <Link key={l.href} href={l.href} className={linkClass}>
                 {l.label}
