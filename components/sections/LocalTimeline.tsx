@@ -44,7 +44,7 @@ export function LocalTimeline() {
       <div
         ref={lineRef}
         className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent origin-top"
-        style={{ scaleY: 0 }}
+        style={{ transform: "scaleY(0)" }}
       />
       {steps.map((step, i) => (
         <StepItem key={step.num} {...step} index={i} />
