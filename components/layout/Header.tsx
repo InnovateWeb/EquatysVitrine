@@ -97,7 +97,7 @@ export function Header() {
       >
         <Container>
           <div className="relative flex h-24 items-center gap-6">
-            <Logo className="[&_img]:h-[4.75rem]" />
+            <Logo className="[&_img]:h-[4.25rem] lg:[&_img]:h-[4.75rem]" />
 
             {/* Navigation desktop — centrée absolument */}
             <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">

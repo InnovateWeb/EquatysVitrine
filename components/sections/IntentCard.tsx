@@ -24,6 +24,9 @@ interface IntentCardProps {
   wide?: boolean;
   /** Eyebrow en rouge (carte urgence). */
   urgentEyebrow?: boolean;
+  /** Si fourni, affiche un bouton téléphone à côté du CTA. */
+  phoneHref?: string;
+  phoneLabel?: string;
 }
 
 /**
@@ -42,6 +45,8 @@ export function IntentCard({
   variant = "link",
   wide = false,
   urgentEyebrow = false,
+  phoneHref,
+  phoneLabel,
 }: IntentCardProps) {
   const ctaClass =
     variant === "urgency"
@@ -98,7 +103,19 @@ export function IntentCard({
       <Text tone="muted" className="mt-3 max-w-[46ch]">
         {description}
       </Text>
-      <div className="mt-auto pt-6">{cta}</div>
+      <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-6">
+        {cta}
+        {phoneHref && (
+          <a
+            href={phoneHref}
+            className="relative z-10 inline-flex items-center gap-2 rounded-[6px] bg-accent px-4 py-2 text-body-s font-medium text-white transition-colors hover:bg-accent-hover"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Phone className="size-3.5 shrink-0" aria-hidden />
+            {phoneLabel ?? phoneHref}
+          </a>
+        )}
+      </div>
     </article>
   );
 }

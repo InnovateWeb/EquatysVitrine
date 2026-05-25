@@ -22,6 +22,8 @@ const intents = [
     variant: "link" as const,
     wide: true,
     urgentEyebrow: true,
+    phoneHref: siteConfig.phone.href,
+    phoneLabel: siteConfig.phone.display,
   },
   {
     num: "02",

@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   Award,
   Droplets,
   FileCheck,
@@ -6,6 +7,7 @@ import {
   Snowflake,
   Zap,
 } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
@@ -158,7 +160,7 @@ export function AProposSection() {
               {engagements.map(({ title, desc }) => (
                 <div
                   key={title}
-                  className="flex flex-col gap-4 rounded-[12px] border border-white/[0.08] bg-white/[0.03] p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/30"
+                  className="flex flex-col gap-4 rounded-r-[12px] border border-white/[0.08] bg-[#0a0a0a] p-7 border-l-[3px] border-l-accent"
                 >
                   <p className="text-body-l font-medium text-white">{title}</p>
                   <p className="text-body text-white/60 leading-relaxed">{desc}</p>
@@ -185,14 +187,12 @@ export function AProposSection() {
               {certifs.map(({ icon: Icon, title, desc }) => (
                 <div
                   key={title}
-                  className="flex items-start gap-4 rounded-[10px] border border-white/[0.08] bg-white/[0.03] px-5 py-4"
+                  className="flex items-center gap-4 py-3"
                 >
-                  <div className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-[6px] bg-accent/[0.12]">
-                    <Icon className="size-4 text-accent" aria-hidden />
-                  </div>
+                  <Icon className="size-7 shrink-0 text-accent" aria-hidden />
                   <div>
                     <p className="text-body font-medium text-white">{title}</p>
-                    <p className="mt-1 text-body-s text-white/55 leading-snug">{desc}</p>
+                    <p className="mt-0.5 text-body-s text-white/55 leading-snug">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -274,6 +274,33 @@ export function AProposSection() {
                   C'est un engagement.
                 </strong>
               </Text>
+            </div>
+          </Container>
+        </section>
+
+      </div>
+
+      <Divider />
+
+      {/* ================================================================== */}
+      {/* CTA CONTACT — blanc                                                  */}
+      {/* ================================================================== */}
+      <div className="bg-[#fafafa]">
+        <section data-section-theme="light" className="py-[clamp(80px,12vw,160px)]">
+          <Container>
+            <div className="flex flex-col items-center text-center">
+              <Eyebrow>Contact</Eyebrow>
+              <Heading level={2} display="m" className="mt-4 max-w-[22ch]">
+                Parlons de votre projet.
+              </Heading>
+              <Text size="l" tone="muted" className="mt-6 max-w-[50ch]">
+                Décrivez-nous votre besoin en quelques mots. Notre équipe vous
+                répond dans la journée ouvrée.
+              </Text>
+              <Button href="/contact" size="lg" className="mt-10">
+                Nous contacter
+                <ArrowRight className="size-4" aria-hidden />
+              </Button>
             </div>
           </Container>
         </section>
