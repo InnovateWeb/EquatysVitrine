@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
-import { mainNav } from "@/lib/site";
+import { mainNav, siteConfig } from "@/lib/site";
 import { getLenisInstance } from "@/lib/animations/lenisStore";
 import { Logo } from "./Logo";
 
@@ -96,11 +96,11 @@ export function Header() {
         )}
       >
         <Container>
-          <div className="flex h-24 items-center gap-6">
-            <Logo />
+          <div className="relative flex h-24 items-center gap-6">
+            <Logo className="[&_img]:h-[4.75rem]" />
 
-            {/* Navigation desktop */}
-            <nav className="ml-auto hidden items-center gap-1 lg:flex">
+            {/* Navigation desktop — centrée absolument */}
+            <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
               {mainNav.map((item) => {
                 const hash = item.href.includes("#") ? item.href.split("#")[1] : null;
                 return (
@@ -125,6 +125,23 @@ export function Header() {
                 );
               })}
             </nav>
+
+            {/* Urgence label + bouton téléphone desktop */}
+            <div className="ml-auto hidden items-center gap-3 lg:flex">
+              <span className={cn(
+                "font-mono text-[10px] tracking-widest uppercase",
+                overDark ? "text-white/40" : "text-muted",
+              )}>
+                Urgence 24/7
+              </span>
+              <a
+                href={siteConfig.phone.href}
+                className="inline-flex items-center gap-2 rounded-[6px] bg-accent px-4 h-9 text-body-s font-medium text-white transition-colors hover:bg-accent-hover"
+              >
+                <Phone className="size-3.5 shrink-0" aria-hidden />
+                {siteConfig.phone.display}
+              </a>
+            </div>
 
             {/* Burger mobile */}
             <button
