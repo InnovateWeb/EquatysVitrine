@@ -7,8 +7,10 @@ import { Heading } from "@/components/ui/Heading";
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Marquee } from "@/components/ui/Marquee";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { LocalTimeline } from "@/components/sections/LocalTimeline";
-import { villes, getVilleBySlug } from "@/lib/data/villes";
+import { villes, getVilleBySlug, allZones } from "@/lib/data/villes";
 import { siteConfig } from "@/lib/site";
 
 const BASE_URL = "https://www.equatys.ch";
@@ -95,7 +97,7 @@ export default async function VillePage(
       >
         <Container>
           <div className="max-w-[720px]">
-            <Eyebrow className="text-[#E63946]">Urgence 24h/24 · {ville.name}</Eyebrow>
+            <Eyebrow>Urgence 24h/24 · {ville.name}</Eyebrow>
             <Heading level={1} display="l" className="mt-4">
               Dépannage chauffage d&apos;urgence à {ville.name}.
             </Heading>
@@ -107,10 +109,10 @@ export default async function VillePage(
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href={siteConfig.phone.href}
-                className="inline-flex items-center gap-2 rounded-[6px] bg-[#E63946] px-6 py-3.5 font-medium text-white transition-colors hover:bg-red-600"
+                className="inline-flex items-center gap-2 rounded-[6px] bg-accent px-6 py-3.5 font-medium text-white transition-colors hover:bg-accent-hover"
               >
                 <Phone className="size-4" aria-hidden />
-                {siteConfig.phone.display} — Appel d&apos;urgence
+                {siteConfig.phone.display}
               </a>
               <a
                 href="/demarrer?situation=urgence"
@@ -134,7 +136,7 @@ export default async function VillePage(
                 On intervient sur toutes les pannes.
               </Heading>
               <Text size="l" tone="muted" className="mt-4">
-                Chauffage, plomberie, électricité, ventilation — un seul numéro,
+                Chauffage, plomberie, électricité, ventilation. Un seul numéro,
                 une seule équipe.
               </Text>
             </div>
@@ -179,17 +181,35 @@ export default async function VillePage(
             </Heading>
             <Text size="l" tone="muted" className="mt-4">
               Nos techniciens couvrent {ville.name} et toutes les communes
-              environnantes, généralement en moins de 30 minutes.
+              environnantes, généralement en moins d&apos;une heure.
             </Text>
           </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {ville.zones.map((zone) => (
-              <span
-                key={zone}
-                className="border-line rounded-full border px-4 py-1.5 text-body-s text-ink"
-              >
-                {zone}
-              </span>
+        </Container>
+
+        {/* 3 lignes de marquee — calées sur la largeur du site */}
+        <Container>
+          <div className="mt-12 flex flex-col gap-4">
+            {[
+              { items: allZones.slice(0, 19),  direction: "left"  as const },
+              { items: allZones.slice(19, 38), direction: "right" as const },
+              { items: allZones.slice(38),     direction: "left"  as const },
+            ].map((row, i) => (
+              <Marquee
+                key={i}
+                direction={row.direction}
+                durationSec={40}
+                separator={null}
+                itemClassName="pr-4"
+                fade
+                items={row.items.map((zone) => (
+                  <ImagePlaceholder
+                    key={zone}
+                    ratio="16:7"
+                    label={zone}
+                    className="w-[170px] shrink-0 rounded-full p-3 whitespace-normal"
+                  />
+                ))}
+              />
             ))}
           </div>
         </Container>
@@ -202,23 +222,23 @@ export default async function VillePage(
       >
         <Container>
           <div className="flex flex-col items-center text-center gap-6 max-w-[560px] mx-auto">
-            <Eyebrow className="text-[#E63946]">Urgence maintenant</Eyebrow>
+            <Eyebrow>Urgence maintenant</Eyebrow>
             <Heading level={2} display="m">
               Une panne à {ville.name} ? On arrive.
             </Heading>
             <Text size="l" tone="muted">
-              Appelez-nous directement ou remplissez le formulaire —
-              nous vous rappelons dans les 5 minutes.
+              Appelez-nous directement ou remplissez le formulaire.
+              Nous vous rappelons dans les 5 minutes.
             </Text>
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href={siteConfig.phone.href}
-                className="inline-flex items-center gap-2 rounded-[6px] bg-[#E63946] px-6 py-3.5 font-medium text-white transition-colors hover:bg-red-600"
+                className="inline-flex items-center gap-2 rounded-[6px] bg-accent px-6 py-3.5 font-medium text-white transition-colors hover:bg-accent-hover"
               >
                 <Phone className="size-4" aria-hidden />
                 {siteConfig.phone.display}
               </a>
-              <Button variant="ghost" href="/demarrer?situation=urgence">
+              <Button variant="ghost" href="/demarrer?situation=urgence" className="h-auto py-3.5">
                 Formulaire urgence
                 <ArrowRight className="size-4" aria-hidden />
               </Button>
