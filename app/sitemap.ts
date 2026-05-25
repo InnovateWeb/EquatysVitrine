@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { villes } from "@/lib/data/villes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.equatys.ch";
@@ -46,5 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.2,
     },
+    // Pages locales SEO
+    ...villes.map((v) => ({
+      url: `${base}/${v.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }

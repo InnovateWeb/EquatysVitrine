@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import {
-  legalLinks,
-  siteConfig,
-} from "@/lib/site";
+import { legalLinks, siteConfig } from "@/lib/site";
 import { Logo } from "./Logo";
 
 const linkClass =
