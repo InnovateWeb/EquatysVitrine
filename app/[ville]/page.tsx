@@ -106,7 +106,7 @@ export default async function VillePage(
               à {ville.name} et ses environs sous <strong className="text-ink">1 à 2 heures</strong>,
               7j/7, 24h/24.
             </Text>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-x-4 gap-y-6">
               <a
                 href={siteConfig.phone.href}
                 className="inline-flex h-11 items-center gap-2 rounded-[6px] bg-accent px-5 font-medium text-white transition-colors hover:bg-accent-hover"
