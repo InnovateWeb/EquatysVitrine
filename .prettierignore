@@ -1,0 +1,10 @@
+.next
+node_modules
+package-lock.json
+*.tsbuildinfo
+next-env.d.ts
+
+# Hors périmètre de formatage
+.claude
+AGENTS.md
+CLAUDE.md
