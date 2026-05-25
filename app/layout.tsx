@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Footer, Header, SmoothScrollProvider } from "@/components/layout";
+import { Footer, Header, ScrollToTop, SmoothScrollProvider } from "@/components/layout";
 import { siteConfig } from "@/lib/site";
 
 // Variable fonts auto-hébergées (cf design system : --font-inter / --font-jetbrains-mono).
@@ -160,6 +160,7 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-dvh flex-col">
         <SmoothScrollProvider>
+          <ScrollToTop />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

@@ -7,7 +7,7 @@ import { Heading } from "@/components/ui/Heading";
 import { Text } from "@/components/ui/Text";
 import { useScrollReveal } from "@/lib/animations/useScrollReveal";
 import { useTextReveal } from "@/lib/animations/useTextReveal";
-import { HeroVideo } from "./HeroVideo";
+import { HeroSlideshow } from "./HeroSlideshow";
 
 /**
  * Bloc 01 — Hero plein écran. Fond vidéo (placeholder pour l'instant), overlay
@@ -54,7 +54,7 @@ export function HeroSection() {
       data-section-theme="dark"
       className="theme-dark bg-surface relative flex min-h-dvh flex-col overflow-hidden"
     >
-      <HeroVideo>
+      <HeroSlideshow>
         <Container className="my-auto py-24">
           <div className="max-w-[820px] text-center lg:text-left">
             <Eyebrow ref={eyebrowRef}>Technique du bâtiment</Eyebrow>
@@ -70,7 +70,7 @@ export function HeroSection() {
             </Text>
           </div>
         </Container>
-      </HeroVideo>
+      </HeroSlideshow>
 
       {/* Indicateur de scroll (centré via flex, sans transform que GSAP écraserait) */}
       <div
