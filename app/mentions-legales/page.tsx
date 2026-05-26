@@ -26,7 +26,7 @@ const blocks = [
         <li><strong>Raison sociale :</strong> Equatys Energy SARL</li>
         <li><strong>Forme juridique :</strong> Société à responsabilité limitée (SARL)</li>
         <li><strong>IDE :</strong> CHE-255.632.676</li>
-        <li><strong>Siège social :</strong> Chemin de l&apos;Orio 28a, 1032 Romanel-sur-Lausanne, Suisse</li>
+        <li><strong>Siège social :</strong> Chemin du Vallon 26, 1030 Bussigny, Suisse</li>
         <li><strong>Téléphone :</strong> <a href="tel:+41217012000">021 701 20 00</a></li>
         <li><strong>Courriel :</strong> <a href="mailto:info@equatys.ch">info@equatys.ch</a></li>
         <li><strong>Site web :</strong> <a href="https://www.equatys.ch">www.equatys.ch</a></li>

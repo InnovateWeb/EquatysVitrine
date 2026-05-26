@@ -24,7 +24,7 @@ const blocks = [
     content: (
       <ul>
         <li><strong>Equatys Energy SARL</strong></li>
-        <li>Chemin de l&apos;Orio 28a, 1032 Romanel-sur-Lausanne</li>
+        <li>Chemin du Vallon 26, 1030 Bussigny</li>
         <li><a href="mailto:info@equatys.ch">info@equatys.ch</a></li>
         <li><a href="tel:+41217012000">021 701 20 00</a></li>
       </ul>
