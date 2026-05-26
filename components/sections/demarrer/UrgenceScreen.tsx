@@ -82,6 +82,50 @@ export function UrgenceScreen({
 }: UrgenceScreenProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
+  const [fileError, setFileError] = useState<string | null>(null);
+
+  /** Compresse une image via canvas (max 1600px, qualité 0.82). */
+  async function compressImage(file: File): Promise<File> {
+    if (!file.type.startsWith("image/")) return file;
+    return new Promise((resolve) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const MAX = 1600;
+        let { width, height } = img;
+        if (width > MAX || height > MAX) {
+          if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
+          else { width = Math.round((width * MAX) / height); height = MAX; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width; canvas.height = height;
+        canvas.getContext("2d")!.drawImage(img, 0, 0, width, height);
+        canvas.toBlob(
+          (blob) => resolve(blob ? new File([blob], file.name, { type: "image/jpeg" }) : file),
+          "image/jpeg", 0.82,
+        );
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+      img.src = url;
+    });
+  }
+
+  async function addFiles(newFiles: File[]) {
+    setFileError(null);
+    const compressed = await Promise.all(newFiles.map(compressImage));
+    setFiles((prev) => {
+      const existing = new Set(prev.map((f) => f.name));
+      const merged = [...prev, ...compressed.filter((f) => !existing.has(f.name))];
+      const totalMB = merged.reduce((acc, f) => acc + f.size, 0) / 1024 / 1024;
+      if (totalMB > 8) {
+        setFileError("Total des fichiers trop volumineux (max 8 Mo). Retirez des fichiers.");
+        return prev;
+      }
+      onFilesChange(merged);
+      return merged;
+    });
+  }
 
   function updateFiles(updater: (prev: File[]) => File[]) {
     setFiles((prev) => {
@@ -318,14 +362,14 @@ export function UrgenceScreen({
             accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.xls,.xlsx"
             onChange={(e) => {
               const newFiles = Array.from(e.target.files ?? []);
-              updateFiles((prev) => {
-                const existing = new Set(prev.map((f) => f.name));
-                return [...prev, ...newFiles.filter((f) => !existing.has(f.name))];
-              });
+              addFiles(newFiles);
               e.target.value = "";
             }}
           />
         </button>
+        {fileError && (
+          <p className="text-body-s text-[#f87171] mt-1">{fileError}</p>
+        )}
         {files.length > 0 && (
           <ul className="mt-2 flex flex-col gap-1">
             {files.map((f) => (

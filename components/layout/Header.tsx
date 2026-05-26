@@ -107,6 +107,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    scroll={hash ? false : undefined}
                     className={navLink}
                     onClick={hash ? (e) => {
                       if (window.location.pathname === "/") {
@@ -204,6 +205,7 @@ export function Header() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      scroll={hash ? false : undefined}
                       className="text-body-l text-ink block py-2"
                       onClick={(e) => {
                         if (hash && window.location.pathname === "/") {
