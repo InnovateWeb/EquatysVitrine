@@ -126,11 +126,7 @@ export function AProposSection() {
               <Text size="l" tone="muted">
                 Notre équipe cumule plusieurs décennies d'expérience dans le
                 chauffage, la ventilation, la climatisation, le sanitaire,
-                l'électricité, la régulation et les énergies renouvelables.{" "}
-                <strong className="font-medium text-ink">
-                  La structure est jeune. Les femmes et les hommes qui la composent
-                  ne le sont pas.
-                </strong>
+                l'électricité, la régulation et les énergies renouvelables.
               </Text>
             </div>
           </Container>
