@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "Vous êtes une jeune entreprise. Est-ce vraiment fiable ?",
     answer:
-      "Equatys a été fondée fin 2025, oui, et c'est précisément pour cela que nous nous démarquons. Notre équipe cumule des dizaines d'années d'expérience dans la technique du bâtiment. Quelques mois après le lancement, nous gérons déjà 84 immeubles sous contrat de maintenance et plus de 60 interventions hebdomadaires. Des régies comme Wincasa, Privera, Publiaz, ou des partenaires comme la BCV, UBS, AXA, SUVA, Helvetia nous ont déjà choisis. La structure est jeune, l'expertise ne l'est pas.",
+      "Equatys a été fondée fin 2025, oui, et c'est précisément pour cela que nous nous démarquons. Notre équipe cumule des dizaines d'années d'expérience dans la technique du bâtiment. Quelques mois après le lancement, nous gérons déjà 84 immeubles sous contrat de maintenance et plus de 30 interventions hebdomadaires. Des régies comme Wincasa, Privera, Publiaz, ou des partenaires comme la BCV, UBS, AXA, SUVA, Helvetia nous ont déjà choisis. La structure est jeune, l'expertise ne l'est pas.",
   },
   {
     question: "Vous avez vraiment toutes les certifications nécessaires ?",
