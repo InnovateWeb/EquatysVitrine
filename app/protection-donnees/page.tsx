@@ -72,9 +72,9 @@ const blocks = [
     content: (
       <p>
         Vos données ne sont ni vendues ni transmises à des tiers à des fins commerciales.
-        Elles peuvent être communiquées à nos sous-traitants techniques (hébergeur Vercel)
-        dans le cadre strict de leur mission, sous couvert d&apos;un accord de traitement
-        des données conforme au droit suisse.
+        Elles peuvent être communiquées à nos sous-traitants techniques (hébergeur Infomaniak
+        Network SA, à Genève) dans le cadre strict de leur mission, sous couvert d&apos;un accord
+        de traitement des données conforme au droit suisse.
       </p>
     ),
   },

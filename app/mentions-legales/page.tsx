@@ -37,10 +37,11 @@ const blocks = [
     title: "Hébergement",
     content: (
       <p>
-        Ce site est hébergé par <strong>Vercel Inc.</strong>, 340 Pine Street, Suite 701,
-        San Francisco, CA 94104, États-Unis.{" "}
-        <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
-          Politique de confidentialité de Vercel
+        Ce site est hébergé par <strong>Infomaniak Network SA</strong>, Rue Eugène-Marziano 25,
+        1227 Les Acacias (Genève), Suisse. Les données sont stockées exclusivement dans des
+        centres de données suisses.{" "}
+        <a href="https://www.infomaniak.com/en/legal/confidentiality-policy" target="_blank" rel="noopener noreferrer">
+          Politique de confidentialité d&apos;Infomaniak
         </a>.
       </p>
     ),

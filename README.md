@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Equatys Energy — Site vitrine
 
-## Getting Started
+Site vitrine d'Equatys Energy, construit avec [Next.js](https://nextjs.org) (App Router).
 
-First, run the development server:
+## Démarrage en local
+
+Lancer le serveur de développement :
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Le point d'entrée des pages se trouve dans `app/`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Variables d'environnement
 
-## Learn More
+Créer un fichier `.env` à la racine avec :
 
-To learn more about Next.js, take a look at the following resources:
+```
+SMTP_HOST=mail.infomaniak.com
+SMTP_PORT=465
+SMTP_USER=...
+SMTP_PASS=...
+SMTP_FROM=...
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=...
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> ⚠️ `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` est injectée au moment du **build** — elle doit être présente avant `npm run build`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Build de production
 
-## Deploy on Vercel
+```bash
+npm run build
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Hébergement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Le site est hébergé sur **Infomaniak** (Node.js managé), déployé depuis ce dépôt Git.
+
+- Installation des dépendances : `npm install`
+- Build : `npm run build`
+- Démarrage : `npm start` (port 3000)

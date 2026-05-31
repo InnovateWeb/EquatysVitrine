@@ -26,6 +26,12 @@
       "port": 3030
     },
     {
+      "name": "myapp-maquette",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "serve", "/Users/maxime/Documents/InnovateWeb/Projet application/myapp/Maquette", "-l", "3031"],
+      "port": 3031
+    },
+    {
       "name": "grand-belmont",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["-y", "serve", "/Users/maxime/Documents/2DS/Maquette/Grand Belmont SA", "-l", "6060"],

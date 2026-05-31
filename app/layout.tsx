@@ -3,7 +3,6 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer, Header, ScrollToTop, SmoothScrollProvider } from "@/components/layout";
 import { siteConfig } from "@/lib/site";
-import { Analytics } from "@vercel/analytics/next";
 
 // Variable fonts auto-hébergées (cf design system : --font-inter / --font-jetbrains-mono).
 const inter = Inter({
@@ -166,7 +165,6 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </SmoothScrollProvider>
-        <Analytics />
       </body>
     </html>
   );
