@@ -98,9 +98,11 @@ export function DemarrerModal() {
   const [submitting, setSubmitting] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
 
-  // Pas de situation → retour au bloc parcours de l'accueil
+  // Pas de situation → retour au bloc parcours de l'accueil.
+  // scroll: false → on empêche le scroll-to-top par défaut de Next, sinon il
+  // écrase le défilement vers #parcours géré par HashScrollHandler.
   useEffect(() => {
-    if (state.situation === null) router.replace("/#parcours");
+    if (state.situation === null) router.replace("/#parcours", { scroll: false });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const set = (patch: Partial<ParcoursState>) =>

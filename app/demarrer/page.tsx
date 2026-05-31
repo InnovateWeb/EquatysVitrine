@@ -9,9 +9,9 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: {
-    canonical: "https://www.equatys.ch/demarrer",
-  },
+  // Page-lanceur de formulaire (nécessite ?situation=...) : sans paramètre elle
+  // redirige vers /#parcours. On la garde hors de l'index Google.
+  robots: { index: false, follow: true },
   openGraph: {
     title: `${title} — Equatys Energy`,
     description,
