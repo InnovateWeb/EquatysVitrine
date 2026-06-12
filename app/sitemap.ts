@@ -23,24 +23,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${base}/mentions-legales`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
-    {
-      url: `${base}/protection-donnees`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
-    {
-      url: `${base}/cgv`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
+    // Pages légales volontairement absentes : elles sont en noindex,
+    // les lister dans le sitemap contredit la directive et déclenche
+    // une alerte Search Console.
     // Pages locales SEO
     ...villes.map((v) => ({
       url: `${base}/${v.slug}`,
