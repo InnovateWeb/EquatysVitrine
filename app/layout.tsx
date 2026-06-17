@@ -67,7 +67,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
+      // Pas de vignette image dans les résultats Google (l'og-image reste
+      // utilisée pour les partages sociaux, qui ne dépendent pas de ceci).
+      "max-image-preview": "none",
       "max-snippet": -1,
     },
   },

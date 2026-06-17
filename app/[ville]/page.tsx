@@ -46,7 +46,11 @@ export async function generateMetadata(
       description,
       url: `${BASE_URL}/${ville.slug}`,
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "none" },
+    },
   };
 }
 
